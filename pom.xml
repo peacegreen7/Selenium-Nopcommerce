@@ -22,6 +22,19 @@
 
     <!-- Manage dependencies -->
     <dependencies>
+        <!-- Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.26.0</version>
+        </dependency>
+
+        <!-- TestNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
+        </dependency>
     </dependencies>
 
     <!-- Compiler/ Run Test -->
@@ -46,14 +59,14 @@
                 <version>3.1.2</version>
                 <configuration>
                     <!-- Run TestNG xml file -->
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/runNopCommerceUser.xml</suiteXmlFile>
-                    </suiteXmlFiles>
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>src/test/resources/runNopCommerceUser.xml</suiteXmlFile>-->
+<!--                    </suiteXmlFiles>-->
 
-                    <!-- Argument -->
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
+<!--                    &lt;!&ndash; Argument &ndash;&gt;-->
+<!--                    <argLine>-->
+<!--                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
+<!--                    </argLine>-->
                 </configuration>
 
 
