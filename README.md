@@ -35,3 +35,33 @@ src/
 └── Jenkinsfile                       # Pipeline file for Jenkins 
 ```
 
+## 2. Setup and Configuration for Selenium Grid
+
+### Step 1: Install Docker
+1. Download and install Docker:
+* macOS/Linux: Use Docker Desktop.
+* Windows: Install Docker Desktop for Windows.
+
+2. Verify the installation by running:
+```bash
+docker --version
+```
+### Step 2: Create a docker-compose.yml for Selenium Grid
+### Step 3: Start Selenium Grid
+1. Navigate to the directory where the docker-compose.yml file is located.
+2. Run the following command:
+```bash
+docker-compose up -d
+```
+3. Verify that the hub and nodes are running:
+* Open http://localhost:4444 in browser.
+
+### Step 4: Integrate with Jenkins
+1. Add Docker to Jenkins:
+- Install Docker on the Jenkins server.
+- Install the "Docker" and "Pipeline" plugins in Jenkins.
+
+2. Create a Jenkins Pipeline Job:
+
+3. Run the pipeline to execute tests on Selenium Grid.
+- Open http://localhost:8080
