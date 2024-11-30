@@ -1,13 +1,32 @@
-version: "3"
+version: "3.9"
 services:
   selenium-hub:
-    image: selenium/hub:4.10.0
+    image: selenium/hub:4.26.0
     container_name: selenium-hub
     ports:
-      - "4444:4444"
+      - "4444:4444" # Hub will be accessible at localhost:4444
+    environment:
+      - SE_GRID_MAX_SESSION=5 # Max parallel sessions
+      - SE_GRID_SESSION_TIMEOUT=120
 
-  chrome:
-    image: selenium/node-chrome:4.10.0
+  chrome-node:
+    image: selenium/node-chrome
+    container_name: chrome-node
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    volumes:
+      - /dev/shm:/dev/shm # Improves browser performance
+    ports:
+      - "7900:7900" # VNC viewer for the node
+    shm_size: "2g" # Shared memory size for the browser
+
+  firefox-node:
+    image: selenium/node-firefox
+    container_name: firefox-node
     depends_on:
       - selenium-hub
     environment:
@@ -16,3 +35,6 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
     volumes:
       - /dev/shm:/dev/shm
+    ports:
+      - "7901:7900" # VNC viewer for the node
+    shm_size: "2g"
