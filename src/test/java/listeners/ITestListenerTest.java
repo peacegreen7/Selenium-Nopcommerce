@@ -8,6 +8,8 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import org.apache.commons.io.FileUtils;
+import utils.LoggerUtility;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +19,7 @@ import java.util.Calendar;
 public class ITestListenerTest implements ITestListener {
 
     private WebDriver driver;
+    private static final Logger log = LoggerUtility.getLogger(ITestListenerTest.class);
 
     // When Test case get failed, this method is called.
     @Override
@@ -35,7 +38,7 @@ public class ITestListenerTest implements ITestListener {
             File destFile = new File(System.getProperty("user.dir") + "/src/reports/screenshots/" + testName + "_" + formater.format(calendar.getTime()) + ".png");
             try {
                 FileUtils.copyFile(srcFile, destFile);
-                System.out.println("Screenshot saved: " + destFile.getAbsolutePath());
+                log.info("Screenshot saved: " + destFile.getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -45,19 +48,19 @@ public class ITestListenerTest implements ITestListener {
     // When Test case get Skipped, this method is called.
     @Override
     public void onTestSkipped(ITestResult Result) {
-        System.out.println("The name of the testcase Skipped is :" + Result.getName());
+        log.info("The name of the testcase Skipped is :" + Result.getName());
     }
 
     // When Test case get Started, this method is called.
     @Override
     public void onTestStart(ITestResult Result) {
-        System.out.println(Result.getName() + " test case started");
+        log.info(Result.getName() + " test case started");
     }
 
     // When Test case get passed, this method is called.
     @Override
     public void onTestSuccess(ITestResult Result) {
-        System.out.println("The name of the testcase passed is :" + Result.getName());
+        log.info("The name of the testcase passed is :" + Result.getName());
     }
 
 }
