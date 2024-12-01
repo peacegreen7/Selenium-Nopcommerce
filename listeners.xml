@@ -1,0 +1,10 @@
+<suite name="ParallelTests" parallel="tests" thread-count="5">
+    <listeners>
+        <listener class-name="listeners.ITestListenerTest" />
+    </listeners>
+    <test name="TestChrome">
+        <classes>
+            <class name="tests.TC_00_Check_ItestListeners" />
+        </classes>
+    </test>
+</suite>
