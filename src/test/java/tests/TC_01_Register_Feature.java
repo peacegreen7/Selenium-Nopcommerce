@@ -1,37 +1,40 @@
 package tests;
 
+import base.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePageObject;
+import pages.RegisterPageObject;
+import utils.PageGeneratorManager;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+public class TC_01_Register_Feature extends BaseTest {
 
-public class TC_01_Register_Feature {
+    WebDriver driver;
+    String url = "https://demo.nopcommerce.com/";
+    HomePageObject homePage;
+    RegisterPageObject registerPage;
 
-    @Parameters("browser")
-    @Test
-    public void Test_Selenium_Driver(String browser) throws MalformedURLException {
-        // Hub URL
-        String hubUrl = "http://localhost:4444/wd/hub";
-
-        // Desired capabilities for Chrome
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setBrowserName(browser);
-
-        // Initialize WebDriver with Grid URL and capabilities
-        WebDriver driver = new RemoteWebDriver(new URL(hubUrl), capabilities);
-
-        // Perform test
-        driver.get("https://www.google.com");
-        System.out.println("Page title is: " + driver.getTitle());
-
-        driver.quit();
+    @BeforeMethod
+    public void before() {
+        driver = openBrowser(url);
+        homePage = PageGeneratorManager.getHomePage(driver);
+        registerPage = homePage.openRegisterPage(driver);
+        System.out.println("Register page title is: " + registerPage.getPageTitle(driver));
     }
 
+    @Test
+    public void TC_01_Register_With_Empty_Data() {
+        System.out.println(driver.getTitle());
+        registerPage.clickOnRegisterButton(driver);
+        Assert.assertEquals(registerPage.getValidateFirstNameFiledText(driver), "First name is required.");
 
+    }
+
+    @AfterMethod
+    public void after() {
+        close();
+    }
 }

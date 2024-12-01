@@ -4,7 +4,8 @@
     </listeners>
     <test name="TestChrome">
         <classes>
-            <class name="tests.TC_00_Check_ItestListeners" />
+<!--            <class name="tests.TC_00_Check_ItestListeners" />-->
+            <class name="tests.TC_01_Register_Feature" />
         </classes>
     </test>
 </suite>
