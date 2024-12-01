@@ -2,13 +2,13 @@
     <test name="TestChrome">
         <parameter name="browser" value="chrome" />
         <classes>
-            <class name="tests.TC_01_Register_Feature" />
+            <class name="tests.TC_00_Test_SeleniumGrid" />
         </classes>
     </test>
     <test name="TestFirefox">
         <parameter name="browser" value="firefox" />
         <classes>
-            <class name="tests.TC_01_Register_Feature" />
+            <class name="tests.TC_00_Test_SeleniumGrid" />
         </classes>
     </test>
 </suite>
