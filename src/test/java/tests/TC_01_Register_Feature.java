@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,8 +19,9 @@ public class TC_01_Register_Feature extends BaseTest {
     RegisterPageObject registerPage;
 
     @BeforeMethod
-    public void before() {
+    public void before(ITestContext context) {
         driver = openBrowser(url);
+        context.setAttribute("WebDriver", driver);
         homePage = PageGeneratorManager.getHomePage(driver);
         registerPage = homePage.openRegisterPage(driver);
         System.out.println("Register page title is: " + registerPage.getPageTitle(driver));
